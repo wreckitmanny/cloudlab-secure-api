@@ -14,14 +14,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Debug secret length (safe)
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "EC2_HOST=${{ secrets.EC2_HOST }}"
+          echo -n "${{ secrets.EC2_SSH_KEY }}" | wc -c
+
       - name: Setup SSH
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" | base64 -d > ~/.ssh/id_ed25519
+          printf '%s\n' "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
+
+
 
       - name: Deploy to EC2
         run: |
