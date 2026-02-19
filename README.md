@@ -35,3 +35,4 @@ Client → Docker Compose → FastAPI Container → Uvicorn
 
 ```bash
 docker compose up --build# deploy trigger Wed Feb 18 19:59:56 CST 2026
+# deploy trigger 2026-02-18T20:06:44-06:00
