@@ -34,4 +34,4 @@ Client → Docker Compose → FastAPI Container → Uvicorn
 ## 🧪 Run Locally
 
 ```bash
-docker compose up --build
+docker compose up --build# deploy trigger Wed Feb 18 19:59:56 CST 2026
